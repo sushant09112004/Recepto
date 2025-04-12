@@ -1,21 +1,25 @@
+// app/dashboard/page.tsx (or page.js)
 "use client";
-import useUser from "@/hooks/useUser";
 
-function Dashboard() {
-  const { user } = useUser(); // Get the current user from the hook
+import React from 'react';
+import useUser from '@/hooks/useUser';
 
-  if (!user) {
-    return <p>Please log in to access the dashboard.</p>;
-  }
+const DashboardPage = () => {
+  const { user } = useUser();
 
   return (
-    <div>
-      <h1>Welcome to the {user.role} Dashboard</h1>
-      <p>Your name: {user.name}</p>
-      <p>Your role: {user.role}</p>
+    <div className="p-8">
+      <h1 className="text-2xl font-bold">Dashboard</h1>
+      {user ? (
+        <div className="mt-4">
+          <p>Welcome, {user.name}!</p>
+          <p>Your role is: {user.role}</p>
+        </div>
+      ) : (
+        <p>You are not logged in.</p>
+      )}
     </div>
   );
+};
 
-}
-
-export default Dashboard;
+export default DashboardPage;

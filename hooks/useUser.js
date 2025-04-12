@@ -1,25 +1,29 @@
-"use client"; // This file is intended to run in the client-side environment (browser)
-import { useState } from 'react';
+// hooks/useUser.ts
+"use client";
+import { useState, useEffect } from "react";
 
 const useUser = () => {
-  // Initialize the user state as null (no user logged in by default)
   const [user, setUser] = useState(null);
 
-  // Function to set the logged-in user
+  useEffect(() => {
+    // Load user from localStorage on mount
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+
   const setCurrentUser = (userData) => {
-    setUser(userData); // Set user data (e.g., from a login API response)
+    setUser(userData);
+    localStorage.setItem("user", JSON.stringify(userData)); // Persist
   };
 
-  // Function to log the user out
   const logout = () => {
-    setUser(null); // Set user to null (log the user out)
+    setUser(null);
+    localStorage.removeItem("user");
   };
 
-  return {
-    user,
-    setCurrentUser,
-    logout,
-  };
+  return { user, setCurrentUser, logout };
 };
 
 export default useUser;

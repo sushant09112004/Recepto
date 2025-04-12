@@ -1,11 +1,11 @@
 "use client";
 import React, { useState } from 'react';
 import useUser from '@/hooks/useUser';// Import the custom hook
-
+import { useRouter } from 'next/navigation'; // Import useRouter for navigation
 function LoginCard() {
   // Get the user state and functions from the custom hook
   const { user, setCurrentUser, logout } = useUser();
-  
+  const router = useRouter(); 
   // List of users for login
   const users = [
     {
@@ -49,6 +49,7 @@ function LoginCard() {
       setCurrentUser(loggedInUser); // Set the logged-in user in the hook state
       setError(''); // Clear error message if login is successful
       alert(`Welcome ${loggedInUser.name}! Role: ${loggedInUser.role}`);
+      router.push('/dashboard'); // Redirect to the dashboard page
       // You can add any redirection logic here based on the role
     } else {
       setError('Invalid email or password');
