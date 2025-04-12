@@ -1,4 +1,4 @@
-import useUser from './useUser';
+import useUser from "@/hooks/useUser";
 
 function Dashboard() {
   const { user } = useUser(); // Get the current user from the hook
