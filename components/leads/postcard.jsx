@@ -6,7 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { ThumbsUp, ThumbsDown, Clock } from "lucide-react";
 import profile from "@/assets/profile.jpg";
-
+import useUser from "@/hooks/useUser";
+import React from "react";
 const posts = [
   {
     id: 1,
@@ -25,6 +26,11 @@ const posts = [
 ];
 
 export default function PostCard() {
+  const { user } = useUser();
+
+  // Safe access to avoid crashing if user is undefined initially
+  const userName = user?.name ?? "Guest";
+
   return (
     <div className="space-y-4 p-4">
       {posts.map((post) => (
@@ -75,14 +81,35 @@ export default function PostCard() {
               <div className="flex justify-between items-center">
                 {/* <div className="flex gap-2 text-sm text-muted-foreground"></div> */}
                 <div className="flex items-center gap-3">
-                  <Button variant="outline" size="default" className="border-yellow-500 text-yellow-700 rounded-3xl ">
-                    Assign
-                  </Button>
-                  <Button variant="outline" size="default" className="border-yellow-500 text-yellow-700 rounded-3xl ">
-                    View Details
-                  </Button>
+                {user?.role === "admin" ? (
+    <>
+      <Button
+        variant="outline"
+        size="default"
+        className="border-yellow-500 text-yellow-700 rounded-3xl"
+      >
+        Assign
+      </Button>
+      <Button
+        variant="outline"
+        size="default"
+        className="border-yellow-500 text-yellow-700 rounded-3xl"
+      >
+        View Details
+      </Button>
+    </>
+  ) : (
+    <Button
+      variant="outline"
+      size="default"
+      className="border-blue-500 text-blue-700 rounded-3xl"
+    >
+      View Post
+    </Button>
+  )}
+
                   <div className="bg-green-500 text-white text-sm px-2 py-1 rounded-sm">
-                    {post.score}
+                    {post.score} {user?.role}
                   </div>
                   <ThumbsUp className="w-5 h-5 cursor-pointer text-muted-foreground" />
                   <ThumbsDown className="w-5 h-5 cursor-pointer text-muted-foreground" />
@@ -92,12 +119,12 @@ export default function PostCard() {
 
             {/* Message */}
             <p className="text-sm">{post.message}</p>
-
+            {user?.role}
             {/* Footer */}
             <div className="flex justify-between items-center">
               <div className="flex gap-2 text-sm text-muted-foreground">
                 <span className="bg-muted px-2 py-0.5 rounded-full flex items-center gap-1">
-                 <Clock className="h-3"/> {post.time}
+                  <Clock className="h-3" /> {post.time}
                 </span>
                 <span className="bg-muted px-2 py-0.5 rounded-full text-green-600">
                   🟢 {post.group}
