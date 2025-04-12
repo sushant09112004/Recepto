@@ -1,3 +1,4 @@
+"use client"; // This file is intended to run in the client-side environment (browser)
 import { useState } from 'react';
 
 const useUser = () => {
