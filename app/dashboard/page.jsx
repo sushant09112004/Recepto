@@ -1,3 +1,4 @@
+"use client";
 import useUser from "@/hooks/useUser";
 
 function Dashboard() {
