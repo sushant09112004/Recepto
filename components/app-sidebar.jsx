@@ -37,7 +37,7 @@ const data = {
       ],
     },
     {
-      title: "Getting Started",
+      title: "More",
       url: "#",
       items: [
         {
@@ -58,7 +58,7 @@ export function AppSidebar({ ...props }) {
             versions={data.versions}
             defaultVersion={data.versions[0]}
           />
-          <SearchForm />
+          {/* <SearchForm /> */}
         </SidebarHeader>
         <SidebarContent>
           {/* We create a SidebarGroup for each parent. */}
