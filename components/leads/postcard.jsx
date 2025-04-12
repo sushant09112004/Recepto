@@ -81,35 +81,35 @@ export default function PostCard() {
               <div className="flex justify-between items-center">
                 {/* <div className="flex gap-2 text-sm text-muted-foreground"></div> */}
                 <div className="flex items-center gap-3">
-                {user?.role === "admin" ? (
-    <>
-      <Button
-        variant="outline"
-        size="default"
-        className="border-yellow-500 text-yellow-700 rounded-3xl"
-      >
-        Assign
-      </Button>
-      <Button
-        variant="outline"
-        size="default"
-        className="border-yellow-500 text-yellow-700 rounded-3xl"
-      >
-        View Details
-      </Button>
-    </>
-  ) : (
-    <Button
-      variant="outline"
-      size="default"
-      className="border-blue-500 text-blue-700 rounded-3xl"
-    >
-      View Post
-    </Button>
-  )}
+                  {user?.role === "admin" ? (
+                    <>
+                      <Button
+                        variant="outline"
+                        size="default"
+                        className="border-yellow-500 text-yellow-700 rounded-3xl"
+                      >
+                        Assign
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="default"
+                        className="border-yellow-500 text-yellow-700 rounded-3xl"
+                      >
+                        View Details
+                      </Button>
+                    </>
+                  ) : (
+                    <Button
+                      variant="outline"
+                      size="default"
+                      className="border-blue-500 text-blue-700 rounded-3xl"
+                    >
+                      View Post
+                    </Button>
+                  )}
 
                   <div className="bg-green-500 text-white text-sm px-2 py-1 rounded-sm">
-                    {post.score} {user?.role}
+                    {post.score} 
                   </div>
                   <ThumbsUp className="w-5 h-5 cursor-pointer text-muted-foreground" />
                   <ThumbsDown className="w-5 h-5 cursor-pointer text-muted-foreground" />

@@ -26,12 +26,12 @@ const data = {
       items: [
         {
           title: "Leads",
-          url: "#",
+          url: "/leads",
           icon: <House className="h-4 w-4" />,
         },
         {
           title: "Analytics",
-          url: "#",
+          url: "/analytics",
           icon: <ChartPie className="h-4 w-4" />,
         },
       ],
