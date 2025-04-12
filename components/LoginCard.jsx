@@ -48,7 +48,7 @@ function LoginCard() {
     if (loggedInUser) {
       setCurrentUser(loggedInUser); // Set the logged-in user in the hook state
       setError(''); // Clear error message if login is successful
-      alert(`Welcome ${loggedInUser.name}! Role: ${loggedInUser.role}`);
+      // alert(`Welcome ${loggedInUser.name}! Role: ${loggedInUser.role}`);
       router.push('/dashboard'); // Redirect to the dashboard page
       // You can add any redirection logic here based on the role
     } else {
