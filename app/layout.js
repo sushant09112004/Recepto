@@ -19,6 +19,7 @@ import { AppSidebar } from "@/components/app-sidebar";
 import { Building, UserPlus, ChevronDown, Search } from "lucide-react";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
+import { SearchForm } from "@/components/search-form";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -57,17 +58,10 @@ export default function RootLayout({ children }) {
                 </button>
               </div>
               <div className="flex items-center gap-3">
-                {/* Search Input with Icon */}
-                <div className="relative">
-                  <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">
-                    <Search className="w-4 h-4" />
-                  </span>
-                  <input
-                    type="text"
-                    placeholder="What is the best tool for XYZ"
-                    className="pl-10 pr-4 py-2 border rounded-md w-full focus:outline-none"
-                  />
-                </div>
+               
+                <SearchForm />
+
+                {/* Separator */}
 
                 {/* Credits Button */}
                 <button className="rounded-md px-6 py-1 mr-1.5 bg-blue-600 text-white hover:scale-105 transition-all duration-200 ease-in-out flex gap-2 items-center">

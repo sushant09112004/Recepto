@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
-import { ThumbsUp, ThumbsDown, Clock } from "lucide-react";
+import { ThumbsUp, ThumbsDown, Clock, MapPin } from "lucide-react";
 import profile from "@/assets/profile.jpg";
 import useUser from "@/hooks/useUser";
 import React from "react";
@@ -47,8 +47,8 @@ export default function PostCard() {
                 </Avatar>
                 <div>
                   <div className="font-medium">{post.name}</div>
-                  <div className="text-sm text-muted-foreground">
-                    📍 {post.location}
+                  <div className="text-sm text-muted-foreground flex justify-center">
+                    <MapPin className="w-3 h-3"/> {post.location}
                   </div>
                 </div>
                 {/* Network */}

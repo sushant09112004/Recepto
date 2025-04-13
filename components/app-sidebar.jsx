@@ -1,5 +1,6 @@
 import * as React from "react";
-
+import Image from "next/image";
+import Logo from "@/assets/logo.svg";
 import { SearchForm } from "@/components/search-form";
 import { VersionSwitcher } from "@/components/version-switcher";
 import {
@@ -14,11 +15,10 @@ import {
   SidebarMenuItem,
   SidebarRail,
 } from "@/components/ui/sidebar";
-import { House, ChartPie } from "lucide-react";
+import { House, ChartPie, Settings } from "lucide-react";
 
 // This is sample data.
 const data = {
-  versions: ["1.0.1", "1.1.0-alpha", "2.0.0-beta1"],
   navMain: [
     {
       title: "Main",
@@ -41,8 +41,9 @@ const data = {
       url: "#",
       items: [
         {
-          title: "Introduction",
+          title: "Logout",
           url: "#",
+          icon: <Settings className="h-4 w-4" />,
         },
       ],
     },
@@ -53,13 +54,10 @@ export function AppSidebar({ ...props }) {
   return (
     <>
       <Sidebar {...props}>
-        <SidebarHeader>
-          <VersionSwitcher
-            versions={data.versions}
-            defaultVersion={data.versions[0]}
-          />
-          {/* <SearchForm /> */}
-        </SidebarHeader>
+        {/* <SidebarHeader> */}
+          <Image src={Logo} alt="Logo" width={180} />
+          <hr className="my-4" />
+        {/* </SidebarHeader> */}
         <SidebarContent>
           {/* We create a SidebarGroup for each parent. */}
           {data.navMain.map((item) => (
@@ -71,7 +69,7 @@ export function AppSidebar({ ...props }) {
                     <SidebarMenuItem key={item.title}>
                       <SidebarMenuButton asChild isActive={item.isActive}>
                         <a href={item.url}>
-                          <div className="flex items-center gap-2">
+                          <div className="flex items-center gap-2 ml-3.5">
                             {item.icon}
                             <span>{item.title}</span>
                           </div>
