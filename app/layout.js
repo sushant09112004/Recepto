@@ -16,7 +16,9 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
+import { Building, UserPlus, ChevronDown, Search } from "lucide-react";
 import Image from "next/image";
+import { Input } from "@/components/ui/input";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -48,15 +50,48 @@ export default function RootLayout({ children }) {
                   orientation="vertical"
                   className="mr-2 data-[orientation=vertical]:h-4"
                 />
+                <Building className="h-6 w-6 text-gray-400" />
+                <h1 className="font-bold">Company Name</h1>
+                <button className="rounded-md  px-6 py-1  ml-3.5 text-blue-600 border-2 border-blue-600 flex gap-2 items-center">
+                  <UserPlus className="h-4 w-4" /> Invite
+                </button>
               </div>
+              <div className="flex items-center gap-3">
+                {/* Search Input with Icon */}
+                <div className="relative">
+                  <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">
+                    <Search className="w-4 h-4" />
+                  </span>
+                  <input
+                    type="text"
+                    placeholder="What is the best tool for XYZ"
+                    className="pl-10 pr-4 py-2 border rounded-md w-full focus:outline-none"
+                  />
+                </div>
 
-              <Image
-                src={profileImage}
-                alt="Profile"
-                width={32}
-                height={32}
-                className="rounded-full object-cover"
-              />
+                {/* Credits Button */}
+                <button className="rounded-md px-6 py-1 mr-1.5 bg-blue-600 text-white hover:scale-105 transition-all duration-200 ease-in-out flex gap-2 items-center">
+                  0 Credits
+                </button>
+
+                {/* Profile Section */}
+                <div className="flex items-center space-x-2">
+                  <Image
+                    src={profileImage}
+                    alt="Profile Picture"
+                    className="h-10 w-10 rounded-full"
+                  />
+                  <div className="flex flex-col">
+                    <span className="font-medium">Anand Kumar</span>
+                    <span className="text-sm text-muted-foreground">Admin</span>
+                  </div>
+                </div>
+
+                {/* Dropdown Icon */}
+                <div className="flex items-center space-x-4">
+                  <ChevronDown className="h-6 w-6 text-gray-400" />
+                </div>
+              </div>
             </header>
 
             {children}

@@ -57,7 +57,7 @@ function LoginCard() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+    <div className="flex justify-center items-center min-h-screen ">
       <div className="shachn-card bg-white p-8 rounded-lg shadow-lg w-80">
         <h2 className="text-center text-xl font-semibold mb-6">Login</h2>
         <form onSubmit={handleLogin} className="space-y-4">
