@@ -1,25 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import profileImage from "@/assets/DataTableImage.svg";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-import { Separator } from "@/components/ui/separator";
-import {
-  SidebarInset,
-  SidebarProvider,
-  SidebarTrigger,
-} from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/app-sidebar";
-import { Building, UserPlus, ChevronDown, Search } from "lucide-react";
-import Image from "next/image";
-import { Input } from "@/components/ui/input";
-import { SearchForm } from "@/components/search-form";
+import AppLayout from "@/components/Layout/AppLayout";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -38,59 +20,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <SidebarProvider>
-          <AppSidebar />
-          <SidebarInset>
-            <header className="flex h-16 shrink-0 items-center justify-between border-b px-4">
-              <div className="flex items-center gap-2">
-                <SidebarTrigger className="-ml-1" />
-                <Separator
-                  orientation="vertical"
-                  className="mr-2 data-[orientation=vertical]:h-4"
-                />
-                <Building className="h-6 w-6 text-gray-400" />
-                <h1 className="font-bold">Company Name</h1>
-                <button className="rounded-md  px-6 py-1  ml-3.5 text-blue-600 border-2 border-blue-600 flex gap-2 items-center">
-                  <UserPlus className="h-4 w-4" /> Invite
-                </button>
-              </div>
-              <div className="flex items-center gap-3">
-               
-                <SearchForm />
-
-                {/* Separator */}
-
-                {/* Credits Button */}
-                <button className="rounded-md px-6 py-1 mr-1.5 bg-blue-600 text-white hover:scale-105 transition-all duration-200 ease-in-out flex gap-2 items-center">
-                  0 Credits
-                </button>
-
-                {/* Profile Section */}
-                <div className="flex items-center space-x-2">
-                  <Image
-                    src={profileImage}
-                    alt="Profile Picture"
-                    className="h-10 w-10 rounded-full"
-                  />
-                  <div className="flex flex-col">
-                    <span className="font-medium">Anand Kumar</span>
-                    <span className="text-sm text-muted-foreground">Admin</span>
-                  </div>
-                </div>
-
-                {/* Dropdown Icon */}
-                <div className="flex items-center space-x-4">
-                  <ChevronDown className="h-6 w-6 text-gray-400" />
-                </div>
-              </div>
-            </header>
-
-            {children}
-          </SidebarInset>
-        </SidebarProvider>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <AppLayout>{children}</AppLayout>
       </body>
     </html>
   );
