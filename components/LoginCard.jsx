@@ -100,7 +100,7 @@ function LoginCard() {
         {user && (
           <div className="mt-4">
             <p>Logged in as: {user.name}</p>
-            <p>Role: {user.role}</p>
+            {/* <p>Role: {user.role}</p> */}
             <button
               onClick={logout}
               className="mt-2 bg-red-500 text-white py-1 px-3 rounded-md"
