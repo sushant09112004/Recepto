@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Recepto Frontend Assignment
 
-## Getting Started
+A frontend assignment built using **Next.js**, **Tailwind CSS**, and **shadcn/ui**.  
+This project demonstrates user login functionality, routing, conditional rendering, and reusable UI components.
 
-First, run the development server:
+## 🔗 Live Demo
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+👉 [View Live Site](https://recepto-blond.vercel.app/)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## 🛠️ Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- ✅ **Custom Hooks**:  
+  Utilized a custom React Hook (`useUser`) to manage and store user session data locally within the application. This ensures state persists across components in a clean and scalable way.
 
-## Learn More
+- ✅ **Component Library - shadcn/ui**:  
+  The UI components such as buttons, inputs, and combo boxes are implemented using the `shadcn/ui` library, enabling rapid and accessible UI development with full Tailwind CSS customization.
 
-To learn more about Next.js, take a look at the following resources:
+- ✅ **Role-Based Login System**:  
+  Simple login logic differentiating between users and admins. Depending on the role, different UI logic is rendered using React state.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- ✅ **Responsive & Accessible UI**:  
+  Layouts are mobile-friendly and designed with accessibility in mind using semantic HTML and focusable UI components.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- ✅ **Deployed with Vercel**:  
+  The app is hosted on Vercel for fast global access and seamless deployment experience.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📂 Technologies Used
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Next.js (App Router)
+- React
+- Tailwind CSS
+- shadcn/ui
+- Vercel (Deployment)
+
+---
+
+## 📸 Screenshots
+
+> Add screenshots here if needed.
+
+---
+
+## 💡 Getting Started
+
+1. Clone the repository  
+   ```bash
+   git clone https://github.com/sushant09112004/Recepto/
