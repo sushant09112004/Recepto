@@ -42,7 +42,7 @@ const data = {
       items: [
         {
           title: "Logout",
-          url: "#",
+          url: "/",
           icon: <Settings className="h-4 w-4" />,
         },
       ],
