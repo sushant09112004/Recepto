@@ -8,9 +8,75 @@ import { ThumbsUp, ThumbsDown, Clock, MapPin } from "lucide-react";
 import profile from "@/assets/profile.jpg";
 import useUser from "@/hooks/useUser";
 import React from "react";
+import { ComboboxDemo } from "../ui/combobox";
 const posts = [
   {
     id: 1,
+    name: "Jennifer Markus",
+    location: "Mumbai, India",
+    avatar: profile,
+    networkLabel: "Org’s Network",
+    profileImages: [profile, profile, profile],
+    message:
+      "A team from *company name mentioned* is seeking a highly motivated Business Development Executive to outreach and secure new clients. The ideal candidate should have a proven track record in sales and business development, with excellent communication skills.",
+    time: "3 hours ago",
+    group: "Group name",
+    score: 74,
+  },
+  {
+    id: 2,
+    name: "Jennifer Markus",
+    location: "Mumbai, India",
+    avatar: profile,
+    networkLabel: "Org’s Network",
+    profileImages: [profile, profile, profile],
+    message:
+      "A team from *company name mentioned* is seeking a highly motivated Business Development Executive to outreach and secure new clients. The ideal candidate should have a proven track record in sales and business development, with excellent communication skills.",
+    time: "3 hours ago",
+    group: "Group name",
+    score: 74,
+  },
+  {
+    id: 3,
+    name: "Jennifer Markus",
+    location: "Mumbai, India",
+    avatar: profile,
+    networkLabel: "Org’s Network",
+    profileImages: [profile, profile, profile],
+    message:
+      "A team from *company name mentioned* is seeking a highly motivated Business Development Executive to outreach and secure new clients. The ideal candidate should have a proven track record in sales and business development, with excellent communication skills.",
+    time: "3 hours ago",
+    group: "Group name",
+    score: 74,
+  },
+  {
+    id: 4,
+    name: "Jennifer Markus",
+    location: "Mumbai, India",
+    avatar: profile,
+    networkLabel: "Org’s Network",
+    profileImages: [profile, profile, profile],
+    message:
+      "A team from *company name mentioned* is seeking a highly motivated Business Development Executive to outreach and secure new clients. The ideal candidate should have a proven track record in sales and business development, with excellent communication skills.",
+    time: "3 hours ago",
+    group: "Group name",
+    score: 74,
+  },
+  {
+    id: 5,
+    name: "Jennifer Markus",
+    location: "Mumbai, India",
+    avatar: profile,
+    networkLabel: "Org’s Network",
+    profileImages: [profile, profile, profile],
+    message:
+      "A team from *company name mentioned* is seeking a highly motivated Business Development Executive to outreach and secure new clients. The ideal candidate should have a proven track record in sales and business development, with excellent communication skills.",
+    time: "3 hours ago",
+    group: "Group name",
+    score: 74,
+  },
+  {
+    id: 6,
     name: "Jennifer Markus",
     location: "Mumbai, India",
     avatar: profile,
@@ -83,13 +149,14 @@ export default function PostCard() {
                 <div className="flex items-center gap-3">
                   {user?.role === "admin" ? (
                     <>
-                      <Button
+                      {/* <Button
                         variant="outline"
                         size="default"
                         className="border-yellow-500 text-yellow-700 rounded-3xl"
                       >
                         Assign
-                      </Button>
+                      </Button> */}
+                      <ComboboxDemo/>
                       <Button
                         variant="outline"
                         size="default"
