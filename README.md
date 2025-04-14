@@ -38,10 +38,6 @@ This project demonstrates user login functionality, routing, conditional renderi
 
 ---
 
-## 📸 Screenshots
-
-> Add screenshots here if needed.
-
 ---
 
 ## 💡 Getting Started
