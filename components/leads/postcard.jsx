@@ -69,7 +69,7 @@ const leadsData = [
     time: "3 hours ago",
     group: "Product Management",
     score: 95,
-    source: "TechCorp",
+    source: "ReceptoNet",
     unlockCost: 4,
     features: {
       viewEmail: true,
@@ -88,7 +88,7 @@ const leadsData = [
     time: "4 hours ago",
     group: "Design",
     score: 92,
-    source: "DesignHub",
+    source: "Organization",
     unlockCost: 3,
     features: {
       viewEmail: true,
@@ -107,7 +107,7 @@ const leadsData = [
     time: "5 hours ago",
     group: "Engineering",
     score: 90,
-    source: "InnoTech",
+    source: "Organization",
     unlockCost: 3,
     features: {
       viewEmail: false,
