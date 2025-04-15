@@ -8,12 +8,12 @@ function Navbar() {
     <div className="w-full h-14 flex items-center">
       {/* Left half */}
       <div className="w-1/2 flex items-center justify-start pl-4 gap-4">
-        <Button className="bg-blue-200 hover:bg-blue-100 border  py-3 border-black text-black">
+        {/* <Button className="bg-blue-200 hover:bg-blue-100 border  py-3 border-black text-black">
           <UserPlus className="text-black mr-2" /> Buyer Signal
         </Button>
         <Button className="bg-blue-200 hover:bg-blue-200 border   py-3 border-black text-black">
           <Globe className="text-black mr-2" /> ICP Triggers
-        </Button>
+        </Button> */}
       </div>
 
       {/* Right half */}

@@ -1,253 +1,316 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import { Avatar } from "@/components/ui/avatar";
 import {
+  Mail,
+  MapPin,
   ThumbsUp,
   ThumbsDown,
   Clock,
-  MapPin,
-  Mail,
   MessageSquareLock,
   Link,
 } from "lucide-react";
 import profile from "@/assets/profile.jpg";
-import useUser from "@/hooks/useUser";
-import React from "react";
-import { useState } from "react";
-import { ComboboxDemo } from "../ui/combobox";
 import img from "@/assets/DataTableImage.svg";
-const posts = [
+import { ComboboxDemo } from "@/components/ui/combobox";
+import useUser from "@/hooks/useUser";
+
+const leadsData = [
   {
     id: 1,
-    name: "John Done",
-    location: "Mumbai, India",
-    avatar: profile,
-    networkLabel: "Org’s Network",
-    profileImages: [profile, profile, profile],
+    name: "Sushant Jadhav",
+    location: "Pune, India",
+    avatar: profile.src,
+    profileImages: [profile.src, profile.src],
     message:
-      "A team from *company name mentioned* is seeking a highly motivated Business Development Executive to outreach and secure new clients. The ideal candidate should have a proven track record in sales and business development, with excellent communication skills.",
-    time: "3 hours ago",
-    group: "Group name",
-    score: 74,
+      "We're seeking an enthusiastic developer skilled in React/Next.js. Remote work and startup vibes!",
+    time: "1 hour ago",
+    group: "Product",
+    score: 99,
+    source: "organization",
+    unlockCost: 3,
+    features: {
+      viewEmail: false,
+      assignTo: true,
+      confidential: false,
+    },
   },
   {
     id: 2,
-    name: "Jennifer Markus",
+    name: "John Done",
     location: "Mumbai, India",
-    avatar: profile,
-    networkLabel: "Org’s Network",
-    profileImages: [profile, profile, profile],
+    avatar: profile.src,
+    profileImages: [profile.src, profile.src, profile.src],
     message:
-      "A team from *company name mentioned* is seeking a highly motivated Business Development Executive to outreach and secure new clients. The ideal candidate should have a proven track record in sales and business development, with excellent communication skills.",
-    time: "3 hours ago",
-    group: "Group name",
-    score: 99,
+      "Looking for a BD executive to help us reach new clients. Fast-paced, growth startup.",
+    time: "2 hours ago",
+    group: "Hiring",
+    score: 88,
+    source: "ReceptoNet",
+    unlockCost: 2,
+    features: {
+      viewEmail: true,
+      assignTo: false,
+      confidential: true,
+    },
   },
   {
     id: 3,
-    name: "Sushant Jadhav",
-    location: "Mumbai, India",
-    avatar: profile,
-    networkLabel: "Org’s Network",
-    profileImages: [profile, profile, profile],
+    name: "Ravi Kumar",
+    location: "Bangalore, India",
+    avatar: profile.src,
+    profileImages: [profile.src, profile.src, profile.src],
     message:
-      "A team from *company name mentioned* is seeking a highly motivated Business Development Executive to outreach and secure new clients. The ideal candidate should have a proven track record in sales and business development, with excellent communication skills.",
+      "We're looking for a product manager to drive innovation and lead teams in a fast-growing startup environment.",
     time: "3 hours ago",
-    group: "Group name",
-    score: 74,
+    group: "Product Management",
+    score: 95,
+    source: "TechCorp",
+    unlockCost: 4,
+    features: {
+      viewEmail: true,
+      assignTo: true,
+      confidential: false,
+    },
   },
   {
     id: 4,
-    name: "Jennifer Markus",
-    location: "Mumbai, India",
-    avatar: profile,
-    networkLabel: "Org’s Network",
-    profileImages: [profile, profile, profile],
+    name: "Neha Sharma",
+    location: "Delhi, India",
+    avatar: profile.src,
+    profileImages: [profile.src, profile.src],
     message:
-      "A team from *company name mentioned* is seeking a highly motivated Business Development Executive to outreach and secure new clients. The ideal candidate should have a proven track record in sales and business development, with excellent communication skills.",
-    time: "3 hours ago",
-    group: "Group name",
-    score: 99,
+      "Seeking a talented UI/UX designer to help us create intuitive and engaging digital experiences for our clients.",
+    time: "4 hours ago",
+    group: "Design",
+    score: 92,
+    source: "DesignHub",
+    unlockCost: 3,
+    features: {
+      viewEmail: true,
+      assignTo: false,
+      confidential: false,
+    },
   },
   {
     id: 5,
-    name: "Jennifer Markus",
-    location: "Mumbai, India",
-    avatar: profile,
-    networkLabel: "Org’s Network",
-    profileImages: [profile, profile, profile],
+    name: "Amit Singh",
+    location: "Chennai, India",
+    avatar: profile.src,
+    profileImages: [profile.src, profile.src, profile.src],
     message:
-      "A team from *company name mentioned* is seeking a highly motivated Business Development Executive to outreach and secure new clients. The ideal candidate should have a proven track record in sales and business development, with excellent communication skills.",
-    time: "3 hours ago",
-    group: "Group name",
-    score: 74,
-  },
-  {
-    id: 6,
-    name: "Jennifer Markus",
-    location: "Mumbai, India",
-    avatar: profile,
-    networkLabel: "Org’s Network",
-    profileImages: [profile, profile, profile],
-    message:
-      "A team from *company name mentioned* is seeking a highly motivated Business Development Executive to outreach and secure new clients. The ideal candidate should have a proven track record in sales and business development, with excellent communication skills.",
-    time: "3 hours ago",
-    group: "Group name",
-    score: 74,
-  },
-  // Add more if needed
+      "Looking for a backend developer skilled in Node.js and AWS to help build scalable systems for our platform.",
+    time: "5 hours ago",
+    group: "Engineering",
+    score: 90,
+    source: "InnoTech",
+    unlockCost: 3,
+    features: {
+      viewEmail: false,
+      assignTo: true,
+      confidential: true,
+    },
+  }
+  
 ];
 
-export default function PostCard() {
-  const { user } = useUser();
-  const [showOptions, setShowOptions] = useState(false);
+export default function LeadsPostCard() {
+  const { user } = useUser(); // assuming { role: "admin" | "user" }
+  const [unlockedIds, setUnlockedIds] = useState([]);
+  const [viewedEmailIds, setViewedEmailIds] = useState([]);
+  const [likedMap, setLikedMap] = useState({});
+  const [dislikedMap, setDislikedMap] = useState({});
 
-  // Safe access to avoid crashing if user is undefined initially
-  const userName = user?.name ?? "Guest";
+  const isAdmin = user?.role === "admin";
+  const isUser = user?.role === "user";
+
+  const handleUnlock = (id) => {
+    if (!unlockedIds.includes(id)) {
+      setUnlockedIds((prev) => [...prev, id]);
+    }
+  };
+
+  const handleViewEmail = (id) => {
+    if (!viewedEmailIds.includes(id)) {
+      setViewedEmailIds((prev) => [...prev, id]);
+    }
+  };
 
   return (
     <div className="space-y-4 p-4">
-      {posts.map((post) => (
-        <Card
-          key={post.id}
-          className="rounded-xl border border-muted shadow-sm"
-        >
-          <CardContent className="p-4 flex flex-col gap-3">
-            {/* Top Section */}
-            <div className="flex items-start justify-between">
-              <div className="flex items-start gap-3">
-                {/* <Avatar>
-                  <AvatarImage src={post.avatar} alt={post.name} />
-                </Avatar> */}
-                <Image alt="image" src={img} />
-                <div>
-                  <div className="font-medium">
-                    {user?.role === "user" &&
-                    (post.name === "John Done" ||
-                      post.name === "Sushant Jadhav") ? (
-                      <span className="blur-sm select-none">Confidential</span>
-                    ) : (
-                      post.name
-                    )}
-                  </div>
+      {leadsData.map((lead) => {
+        const isUnlocked = unlockedIds.includes(lead.id);
+        const viewedEmail = viewedEmailIds.includes(lead.id);
+        const confidential = lead.features.confidential;
 
-                  <div className="text-sm text-muted-foreground flex justify-center">
-                    <MapPin className="w-3 h-3" /> {post.location}
+        const displayName =
+          isUser && confidential && !isUnlocked && !viewedEmail ? (
+            <span className="blur-sm select-none">Confidential</span>
+          ) : (
+            lead.name
+          );
+
+        return (
+          <Card key={lead.id} className="rounded-xl border shadow-sm">
+            <CardContent className="p-4 flex flex-col gap-3">
+              {/* Top Section */}
+              <div className="flex justify-between items-start">
+                {/* Left */}
+                <div className="flex items-start gap-3">
+                  <Image src={img} alt="icon" width={40} height={40} />
+                  <div>
+                    <div className="font-medium">{displayName}</div>
+                    <div className="text-sm text-muted-foreground flex items-center gap-1">
+                      <MapPin className="w-3 h-3" /> {lead.location}
+                    </div>
+                  </div>
+                  <div className="flex items-center -space-x-2 ml-2">
+                    {lead.profileImages.map((img, idx) => (
+                      <Image
+                        key={idx}
+                        src={img}
+                        alt="profile"
+                        width={24}
+                        height={24}
+                        className="rounded-full border-2 border-white"
+                      />
+                    ))}
                   </div>
                 </div>
-                {/* Network */}
-                <div className="flex items-center -space-x-2 ml-2">
-                  {post.profileImages.map((img, i) => (
-                    <Image
-                      key={i}
-                      src={img}
-                      alt="profile"
-                      width={24}
-                      height={24}
-                      className="rounded-full border-2 border-white"
-                    />
-                  ))}
-                  <span className="text-xs bg-muted px-2 py-0.5 rounded-full ml-2">
-                    {post.networkLabel}
-                  </span>
-                </div>
-              </div>
 
-              {/* Buttons */}
-              {/* <div className="flex gap-2">
-                <Button variant="outline" size="sm">
-                  Assign
-                </Button>
-                <Button variant="outline" size="sm">
-                  View Details
-                </Button>
-              </div> */}
-              <div className="flex justify-between items-center">
-                {/* <div className="flex gap-2 text-sm text-muted-foreground"></div> */}
+                {/* Right */}
                 <div className="flex items-center gap-3">
-                  {user?.role === "admin" ? (
+                  {/* Admin Controls */}
+                  {isAdmin && !isUnlocked ? (
+                    <Button
+                      onClick={() => handleUnlock(lead.id)}
+                      className="w-[250px] bg-blue-600 text-white rounded-3xl hover:bg-blue-700 gap-2"
+                    >
+                      <Mail className="w-4 h-4" />
+                      Unlock (Cost: {lead.unlockCost})
+                    </Button>
+                  ) : null}
+
+                  {(isAdmin && isUnlocked) || (isUser && viewedEmail) ? (
                     <>
-                      {!showOptions ? (
-                        <Button
-                          variant="outline"
-                          size="default"
-                          className="w-[250px] bg-blue-600 text-white rounded-3xl hover:text-white hover:bg-blue-600 gap-3"
-                          onClick={() => setShowOptions(true)}
-                        >
-                          <Mail /> Unlock
-                        </Button>
-                      ) : (
-                        <div className="flex gap-3 space-y-4 items-start">
-                          <ComboboxDemo />
-                          <Button
-                            variant="outline"
-                            size="default"
-                            className="border-yellow-500 text-yellow-700 rounded-3xl"
-                          >
-                            View Details
-                          </Button>
-                        </div>
-                      )}
+                      {lead.features.assignTo && <ComboboxDemo />}
+                      <Button
+                        variant="outline"
+                        className="border-yellow-500 text-yellow-700 rounded-3xl"
+                      >
+                        View Details
+                      </Button>
+                      <ComboboxDemo />
                     </>
-                  ) : (
+                  ) : null}
+
+                  {/* User Controls - viewEmail */}
+                  {isUser && lead.features.viewEmail && !viewedEmail && (
                     <Button
                       variant="outline"
-                      size="default"
-                      className="border-blue-500 text-white bg-blue-600 rounded-3xl hover:bg-blue-600 hover:text-white"
+                      onClick={() => handleViewEmail(lead.id)}
+                      className="border-blue-500 bg-blue-600 text-white rounded-3xl hover:bg-blue-700"
                     >
-                      <Mail /> View Email
+                      <Mail className="w-4 h-4" /> View Email
                     </Button>
                   )}
 
+                  {/* Score */}
                   <div
                     className={`${
-                      post.score === 99
-                        ? "bg-blue-500 text-white"
-                        : "bg-green-500 text-white"
-                    } text-sm px-2 py-1 rounded-sm`}
+                      lead.score >= 90 ? "bg-green-500" : "bg-blue-500"
+                    } text-white text-sm px-2 py-1 rounded-sm`}
                   >
-                    {post.score}
+                    {lead.score}
                   </div>
 
-                  <ThumbsUp className="w-5 h-5 cursor-pointer text-muted-foreground" />
-                  <ThumbsDown className="w-5 h-5 cursor-pointer text-muted-foreground" />
-                  {user?.role === "user" && (
+                  {/* Icons */}
+                  <div className="flex items-center gap-2">
+                    <div
+                      onClick={() => {
+                        setLikedMap((prev) => ({ ...prev, [lead.id]: true }));
+                        setTimeout(() => {
+                          setLikedMap((prev) => ({
+                            ...prev,
+                            [lead.id]: false,
+                          }));
+                        }, 300);
+                      }}
+                      className={`p-1 rounded-full transition-all duration-300 ${
+                        likedMap[lead.id]
+                          ? "bg-blue-200 scale-110"
+                          : "hover:bg-blue-100"
+                      }`}
+                    >
+                      <ThumbsUp className="w-5 h-5 cursor-pointer text-blue-600" />
+                    </div>
+
+                    <div
+                      onClick={() => {
+                        setDislikedMap((prev) => ({
+                          ...prev,
+                          [lead.id]: true,
+                        }));
+                        setTimeout(() => {
+                          setDislikedMap((prev) => ({
+                            ...prev,
+                            [lead.id]: false,
+                          }));
+                        }, 300);
+                      }}
+                      className={`p-1 rounded-full transition-all duration-300 ${
+                        dislikedMap[lead.id]
+                          ? "bg-blue-200 scale-110"
+                          : "hover:bg-blue-100"
+                      }`}
+                    >
+                      <ThumbsDown className="w-5 h-5 cursor-pointer text-blue-600" />
+                    </div>
+                  </div>
+
+                  {/* Confidential actions */}
+                  {isUser && confidential && (
                     <div className="flex gap-2">
-                      <MessageSquareLock className="w-5 h-5 cursor-pointer text-muted-foreground" />
-                      <Link className="w-5 h-5 cursor-pointer text-muted-foreground" />
+                      <MessageSquareLock className="w-5 h-5 text-blue-600" />
+                      <Link className="w-5 h-5 text-blue-600" />
                     </div>
                   )}
                 </div>
               </div>
-            </div>
 
-            {/* Message */}
-            <p className="text-sm">{post.message}</p>
-            {/* {user?.role} */}
-            {/* Footer */}
-            <div className="flex justify-between items-center">
+              {/* Message */}
+              <p className="text-sm">{lead.message}</p>
+
+              {/* Footer */}
               <div className="flex gap-2 text-sm text-muted-foreground">
-                <span className="bg-muted px-2 py-0.5 rounded-full flex items-center gap-1">
-                  <Clock className="h-3" /> {post.time}
+                <span
+                  className={`px-2 py-0.5 rounded-full flex items-center gap-1 ${
+                    lead.source === "ReceptoNet"
+                      ? "bg-blue-100 text-blue-600"
+                      : "bg-muted text-muted-foreground"
+                  }`}
+                >
+                  <Clock className="h-3" /> {lead.time}
                 </span>
-                <span className="bg-muted px-2 py-0.5 rounded-full text-green-600">
-                  🟢 {post.group}
+
+                <span
+                  className={`px-2 py-0.5 rounded-full ${
+                    lead.source === "ReceptoNet"
+                      ? "bg-orange-100 text-orange-600"
+                      : "bg-green-100 text-green-600"
+                  }`}
+                >
+                  🔗 {lead.source}
                 </span>
               </div>
-              {/* <div className="flex items-center gap-2">
-                <div className="bg-green-500 text-white text-sm px-2 py-1 rounded-full">
-                  {post.score}
-                </div>
-                <ThumbsUp className="w-4 h-4 cursor-pointer text-muted-foreground" />
-                <ThumbsDown className="w-4 h-4 cursor-pointer text-muted-foreground" />
-              </div> */}
-            </div>
-          </CardContent>
-        </Card>
-      ))}
+            </CardContent>
+          </Card>
+        );
+      })}
     </div>
   );
 }

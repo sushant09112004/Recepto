@@ -5,6 +5,7 @@ import React from 'react';
 import useUser from '@/hooks/useUser';
 import FilterButton from '@/components/filter/filter-button';
 import { ComboboxDemo } from '@/components/ui/combobox';
+import SmoothAreaChart from '@/components/Rechart';
 const DashboardPage = () => {
   const { user } = useUser();
   const handleApplyFilters = (filters) => {
@@ -20,6 +21,7 @@ const DashboardPage = () => {
           <p>Your role is: {user.role}</p>
           <FilterButton activeFiltersCount={2} onApplyFilters={handleApplyFilters} />
           <ComboboxDemo/>
+          <SmoothAreaChart/>
         </div>
       ) : (
         <p>You are not logged in.</p>
