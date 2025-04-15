@@ -16,14 +16,14 @@ const data = [
   { name: 'May', uv: 394 },
 ];
 
-export default function ExampleChart() {
+export default function ExampleChartOrange() {
   return (
     <ResponsiveContainer width="100%" height="100%">
       <AreaChart data={data}>
         <defs>
           <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="5%" stopColor="#2563EB" stopOpacity={0.3} />
-            <stop offset="95%" stopColor="#2563EB" stopOpacity={0} />
+            <stop offset="5%" stopColor="#FFA500" stopOpacity={0.6} /> {/* Orange color */}
+            <stop offset="95%" stopColor="#FFA500" stopOpacity={0} /> {/* Orange color */}
           </linearGradient>
         </defs>
         <XAxis
@@ -47,9 +47,9 @@ export default function ExampleChart() {
         <Area
           type="monotone"
           dataKey="uv"
-          stroke="#2563EB"
+          stroke="#FFA500"  // Orange stroke
           fillOpacity={1}
-          fill="url(#colorUv)"
+          fill="url(#colorUv)" // Orange gradient fill under the curve
         />
       </AreaChart>
     </ResponsiveContainer>
