@@ -54,11 +54,11 @@ export const metadata = {
 };
 function Layoutwrapper({ children }) {
   const [logoutDialogOpen, setLogoutDialogOpen] = useState(false);
-  const [mounted, setMounted] = useState(false)
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
   return (
     <SidebarProvider>
@@ -73,7 +73,7 @@ function Layoutwrapper({ children }) {
             />
             <Building className="h-6 w-6 text-gray-400" />
             <h1 className="font-bold">Company Name</h1>
-            <button className="rounded-md  px-6 py-1  ml-3.5 text-blue-600 border-2 border-blue-600 flex gap-2 items-center">
+            <button className="rounded-md  px-6 py-1  ml-3.5 text-blue-600 border-2 border-blue-600 md:flex gap-2 items-center hidden ">
               <UserPlus className="h-4 w-4" /> Invite
             </button>
           </div>
@@ -83,7 +83,7 @@ function Layoutwrapper({ children }) {
             {/* Separator */}
 
             {/* Credits Button */}
-            <button className="rounded-md px-6 py-1 mr-1.5 bg-blue-600 text-white hover:scale-105 transition-all duration-200 ease-in-out flex gap-2 items-center">
+            <button className="hidden md:flex rounded-md px-6 py-1 mr-1.5 bg-blue-600 text-white hover:scale-105 transition-all duration-200 ease-in-out gap-2 items-center">
               0 Credits
             </button>
 
@@ -135,16 +135,16 @@ function Layoutwrapper({ children }) {
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem onClick={() => setLogoutDialogOpen(true)}>
-        Logout
-        <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
-      </DropdownMenuItem>
+                    Logout
+                    <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+                  </DropdownMenuItem>
 
-      {mounted && (
-        <LogoutDialogWithImage
-          open={logoutDialogOpen}
-          setOpen={setLogoutDialogOpen}
-        />
-      )}
+                  {mounted && (
+                    <LogoutDialogWithImage
+                      open={logoutDialogOpen}
+                      setOpen={setLogoutDialogOpen}
+                    />
+                  )}
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
