@@ -15,7 +15,7 @@ const DashboardPage = () => {
   return (
     <div className="p-8">
       <h1 className="text-2xl font-bold">Dashboard</h1>
-      {user ? (
+      {user?.role === "user" ? (
         <div className="mt-4">
           <p>Welcome, {user.name}!</p>
           <p>Your role is: {user.role}</p>
