@@ -21,6 +21,7 @@ const DashboardPage = () => {
             activeFiltersCount={2}
             onApplyFilters={handleApplyFilters}
           />
+          
           <ComboboxDemo />
           <SmoothAreaChart />
         </div>
